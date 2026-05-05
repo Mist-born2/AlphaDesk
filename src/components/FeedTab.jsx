@@ -2,7 +2,11 @@ import { shortAddr, formatUsd, formatNumber, timeAgo } from '../utils/formatters
 
 export default function FeedTab({ feed }) {
   if (!feed || feed.length === 0) {
-    return <div className="empty-state">No activity feed data available.</div>;
+    return (
+      <div className="empty-state">
+        No activity feed data yet. In Live mode, the feed populates after the pipeline finishes scanning top traders.
+      </div>
+    );
   }
 
   return (

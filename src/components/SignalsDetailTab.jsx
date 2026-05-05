@@ -3,7 +3,7 @@ import Sparkline from './Sparkline.jsx';
 
 export default function SignalsDetailTab({ signals, wallets, onSelectWallet }) {
   if (!signals || signals.length === 0) {
-    return <div className="empty-state">No conviction signals detected. Signals fire when 3+ smart wallets hold the same token.</div>;
+    return <div className="empty-state">No conviction signals yet. Signals fire when 3+ ranked wallets converge on the same token.</div>;
   }
 
   return (

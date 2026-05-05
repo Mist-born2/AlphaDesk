@@ -87,6 +87,8 @@ function buildDemoPositions(walletIdx, rng) {
   });
 }
 
+const DEMO_EPOCH = Date.now();
+
 const rng = seededRng(42);
 
 export const DEMO_WALLETS = WALLET_ADDRS.map((addr, i) => {
@@ -106,9 +108,9 @@ export const DEMO_WALLETS = WALLET_ADDRS.map((addr, i) => {
     portfolio: PORTFOLIOS[i],
     positions,
     tier: getTier(score),
-    lastActive: 1717200000000 - i * 1800000,
+    lastActive: DEMO_EPOCH - i * 1800000,
     appearsInTokens: positions.map(p => p.symbol),
-    lastTradeTimestamp: 1717200000000 - i * 3600000,
+    lastTradeTimestamp: DEMO_EPOCH - i * 3600000,
   };
 });
 
@@ -150,20 +152,20 @@ export const DEMO_SIGNALS = [
 ];
 
 export const DEMO_FEED = [
-  { id: 'df-0', type: 'top_trader', wallet: WALLET_ADDRS[0], token: wif, volume24h: 284300, tradeCount: 47, timestamp: 1717199400000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-1', type: 'top_trader', wallet: WALLET_ADDRS[1], token: bonk, volume24h: 198700, tradeCount: 32, timestamp: 1717198800000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-2', type: 'top_trader', wallet: WALLET_ADDRS[2], token: jup, volume24h: 156200, tradeCount: 28, timestamp: 1717198200000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-3', type: 'top_trader', wallet: WALLET_ADDRS[0], token: bonk, volume24h: 142800, tradeCount: 19, timestamp: 1717197600000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-4', type: 'top_trader', wallet: WALLET_ADDRS[3], token: wif, volume24h: 98400, tradeCount: 15, timestamp: 1717197000000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-5', type: 'top_trader', wallet: WALLET_ADDRS[4], token: TOKEN_POOL[7], volume24h: 87200, tradeCount: 22, timestamp: 1717196400000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-6', type: 'top_trader', wallet: WALLET_ADDRS[1], token: TOKEN_POOL[6], volume24h: 76500, tradeCount: 11, timestamp: 1717195800000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-7', type: 'top_trader', wallet: WALLET_ADDRS[5], token: TOKEN_POOL[3], volume24h: 65300, tradeCount: 9, timestamp: 1717195200000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-8', type: 'top_trader', wallet: WALLET_ADDRS[2], token: TOKEN_POOL[10], volume24h: 54100, tradeCount: 14, timestamp: 1717194600000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-9', type: 'top_trader', wallet: WALLET_ADDRS[6], token: TOKEN_POOL[4], volume24h: 43800, tradeCount: 7, timestamp: 1717194000000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-10', type: 'top_trader', wallet: WALLET_ADDRS[3], token: TOKEN_POOL[13], volume24h: 38200, tradeCount: 12, timestamp: 1717193400000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-11', type: 'top_trader', wallet: WALLET_ADDRS[7], token: TOKEN_POOL[11], volume24h: 29400, tradeCount: 5, timestamp: 1717192800000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-12', type: 'top_trader', wallet: WALLET_ADDRS[4], token: TOKEN_POOL[14], volume24h: 22100, tradeCount: 8, timestamp: 1717192200000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-13', type: 'top_trader', wallet: WALLET_ADDRS[8], token: TOKEN_POOL[9], volume24h: 18700, tradeCount: 4, timestamp: 1717191600000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-14', type: 'top_trader', wallet: WALLET_ADDRS[5], token: TOKEN_POOL[15], volume24h: 14500, tradeCount: 6, timestamp: 1717191000000, source: 'Demo Snapshot', quality: 'sample' },
-  { id: 'df-15', type: 'top_trader', wallet: WALLET_ADDRS[9], token: TOKEN_POOL[8], volume24h: 11200, tradeCount: 3, timestamp: 1717190400000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-0', type: 'top_trader', wallet: WALLET_ADDRS[0], token: wif, volume24h: 284300, tradeCount: 47, timestamp: DEMO_EPOCH - 120000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-1', type: 'top_trader', wallet: WALLET_ADDRS[1], token: bonk, volume24h: 198700, tradeCount: 32, timestamp: DEMO_EPOCH - 360000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-2', type: 'top_trader', wallet: WALLET_ADDRS[2], token: jup, volume24h: 156200, tradeCount: 28, timestamp: DEMO_EPOCH - 720000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-3', type: 'top_trader', wallet: WALLET_ADDRS[0], token: bonk, volume24h: 142800, tradeCount: 19, timestamp: DEMO_EPOCH - 1080000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-4', type: 'top_trader', wallet: WALLET_ADDRS[3], token: wif, volume24h: 98400, tradeCount: 15, timestamp: DEMO_EPOCH - 1500000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-5', type: 'top_trader', wallet: WALLET_ADDRS[4], token: TOKEN_POOL[7], volume24h: 87200, tradeCount: 22, timestamp: DEMO_EPOCH - 2100000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-6', type: 'top_trader', wallet: WALLET_ADDRS[1], token: TOKEN_POOL[6], volume24h: 76500, tradeCount: 11, timestamp: DEMO_EPOCH - 2700000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-7', type: 'top_trader', wallet: WALLET_ADDRS[5], token: TOKEN_POOL[3], volume24h: 65300, tradeCount: 9, timestamp: DEMO_EPOCH - 3600000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-8', type: 'top_trader', wallet: WALLET_ADDRS[2], token: TOKEN_POOL[10], volume24h: 54100, tradeCount: 14, timestamp: DEMO_EPOCH - 4500000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-9', type: 'top_trader', wallet: WALLET_ADDRS[6], token: TOKEN_POOL[4], volume24h: 43800, tradeCount: 7, timestamp: DEMO_EPOCH - 5400000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-10', type: 'top_trader', wallet: WALLET_ADDRS[3], token: TOKEN_POOL[13], volume24h: 38200, tradeCount: 12, timestamp: DEMO_EPOCH - 6600000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-11', type: 'top_trader', wallet: WALLET_ADDRS[7], token: TOKEN_POOL[11], volume24h: 29400, tradeCount: 5, timestamp: DEMO_EPOCH - 7800000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-12', type: 'top_trader', wallet: WALLET_ADDRS[4], token: TOKEN_POOL[14], volume24h: 22100, tradeCount: 8, timestamp: DEMO_EPOCH - 9000000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-13', type: 'top_trader', wallet: WALLET_ADDRS[8], token: TOKEN_POOL[9], volume24h: 18700, tradeCount: 4, timestamp: DEMO_EPOCH - 10800000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-14', type: 'top_trader', wallet: WALLET_ADDRS[5], token: TOKEN_POOL[15], volume24h: 14500, tradeCount: 6, timestamp: DEMO_EPOCH - 12600000, source: 'Demo Snapshot', quality: 'sample' },
+  { id: 'df-15', type: 'top_trader', wallet: WALLET_ADDRS[9], token: TOKEN_POOL[8], volume24h: 11200, tradeCount: 3, timestamp: DEMO_EPOCH - 14400000, source: 'Demo Snapshot', quality: 'sample' },
 ];
