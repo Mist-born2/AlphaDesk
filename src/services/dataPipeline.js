@@ -116,6 +116,7 @@ export async function runLivePipeline(client, onStep) {
         marketCap: overview.marketCap,
       };
     } catch { /* skip */ }
+    await delay(150);
   }
 
   for (const w of uniqueWallets) {
@@ -145,6 +146,7 @@ export async function runLivePipeline(client, onStep) {
         }
       }
     } catch { /* skip */ }
+    await delay(150);
   }
 
   step(7);

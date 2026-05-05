@@ -46,33 +46,14 @@ export default function App() {
     return 'Live via Proxy';
   }, [mode, userApiKey]);
 
-  const handleModeChange = useCallback((newMode) => {
-    setMode(newMode);
-    setError(null);
-    if (newMode === 'demo') {
-      setWallets(DEMO_WALLETS);
-      setSignals(DEMO_SIGNALS);
-      setFeed(DEMO_FEED);
-      setLastRefresh(null);
-      setMeta(null);
-    }
-  }, []);
-
-  const handleRefresh = useCallback(async () => {
-    if (mode === 'demo') {
-      setWallets(DEMO_WALLETS);
-      setSignals(DEMO_SIGNALS);
-      setFeed(DEMO_FEED);
-      return;
-    }
-
+  const doLiveFetch = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
     const steps = STEPS.map(label => ({ label, done: false }));
     setLoadingSteps(steps);
 
-    const client = createBirdeyeClient({ mode, userApiKey });
+    const client = createBirdeyeClient({ mode: 'live', userApiKey });
 
     try {
       const result = await runLivePipeline(client, (idx) => {
@@ -92,7 +73,37 @@ export default function App() {
     } finally {
       setIsLoading(false);
     }
-  }, [mode, userApiKey]);
+  }, [userApiKey]);
+
+  const handleModeChange = useCallback((newMode) => {
+    setMode(newMode);
+    setError(null);
+    setSelectedWallet(null);
+    if (newMode === 'demo') {
+      setWallets(DEMO_WALLETS);
+      setSignals(DEMO_SIGNALS);
+      setFeed(DEMO_FEED);
+      setLastRefresh(null);
+      setMeta(null);
+    } else {
+      setWallets([]);
+      setSignals([]);
+      setFeed([]);
+      setLastRefresh(null);
+      setMeta(null);
+      doLiveFetch();
+    }
+  }, [doLiveFetch]);
+
+  const handleRefresh = useCallback(async () => {
+    if (mode === 'demo') {
+      setWallets(DEMO_WALLETS);
+      setSignals(DEMO_SIGNALS);
+      setFeed(DEMO_FEED);
+      return;
+    }
+    await doLiveFetch();
+  }, [mode, doLiveFetch]);
 
   const handleUseDemoData = useCallback(() => {
     setError(null);

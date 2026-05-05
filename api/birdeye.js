@@ -11,7 +11,7 @@ const SAFE_PARAM_RE = /^[a-zA-Z0-9_\-.]+$/;
 
 const rateStore = new Map();
 const RATE_WINDOW = 60000;
-const RATE_MAX = 40;
+const RATE_MAX = 150;
 
 function checkRate(ip) {
   const now = Date.now();
